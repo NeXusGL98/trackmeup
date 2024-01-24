@@ -137,11 +137,7 @@ func TestTimeIntervalGenerateInterval(t *testing.T) {
 
 		t.Run(name, func(t *testing.T) {
 
-			interval, err := icheck.GenerateInterval()
-
-			if err != nil {
-				t.Errorf("Expected no error, got %v", err)
-			}
+			interval := icheck.GenerateInterval()
 
 			if len(interval) != len(icheck.expected) {
 				t.Errorf("Expected interval to have 5 days, got %d", len(interval))

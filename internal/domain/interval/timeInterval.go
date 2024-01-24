@@ -58,7 +58,7 @@ func (ti *TimeInterval) isSkipDay(day time.Weekday) bool {
 	return false
 }
 
-func (ti *TimeInterval) GenerateInterval() ([]time.Time, error) {
+func (ti *TimeInterval) GenerateInterval() []time.Time {
 
 	var interval []time.Time
 
@@ -71,5 +71,5 @@ func (ti *TimeInterval) GenerateInterval() ([]time.Time, error) {
 		}
 	}
 
-	return interval, nil
+	return interval
 }
