@@ -1,4 +1,4 @@
-package jira
+package httpclient
 
 import (
 	"bytes"
@@ -11,11 +11,11 @@ import (
 )
 
 type Client struct {
-	baseURL *url.URL
+	BaseURL *url.URL
 	client  *http.Client
 }
 
-// NewClient returns a new Jira client with the given base URL and HTTP client.
+// NewClient returns a  with the given base URL and HTTP client.
 // if a nil httpClient is provided, http.DefaultClient will be used
 // baseURL should always be specified with a trailing slash
 // baseURL is the http url of your jira instance
@@ -38,7 +38,7 @@ func NewClient(baseURL string, httpClient *http.Client) (*Client, error) {
 	}
 
 	return &Client{
-		baseURL: baseEndpoint,
+		BaseURL: baseEndpoint,
 		client:  httpClient,
 	}, nil
 }
@@ -54,7 +54,7 @@ func (c *Client) NewRequest(ctx context.Context, method, urlString string, body 
 	// Urls should not contain a leading slash since the baseURL already includes it.
 	url.Path = strings.TrimLeft(url.Path, "/")
 
-	u := c.baseURL.ResolveReference(url)
+	u := c.BaseURL.ResolveReference(url)
 
 	var buf io.ReadWriter
 
